@@ -6,30 +6,37 @@ void playerOneTurn();
 void playerTwoTurn();
 void game();
 
-int grid[4][4];
+char grid[4][4] = {
+{'1', '2', '3'}, 
+{'4', '5', '6'}, 
+{'7', '8', '9'}  
+};
+
+char playerOneSymbol = 'X';
+char playerTwoSymbol = 'O';
 
 int isPlayerOneTurn = 1;
 int isPlayerTwoTurn = 0;
 
+int isInputValid = 0;
+
 int userInput;
 
-int main(void){
-    printBoard();
+int endGame = 1;
 
+int main(void){
     game();
-    playerOneTurn();
     return 0;
 }
 
 void printBoard(void){
-    
+    printf("HINT: Type 0 to exit\n\n");
 
     printf("|-----------|\n");
 
     for(int i = 0; i <= 2; i++){
         for(int j = 0; j <= 2; j++){
-            grid[i][j] = j;
-            printf("| %d ", grid[i][j]);
+            printf("| %c ", grid[i][j]);
             if(j == 2){
                 printf("|");
             }
@@ -42,7 +49,7 @@ void printBoard(void){
 
 void game(){
 
-    while(1 < 0){
+    while(endGame == 1){
         if(isPlayerOneTurn == 1 && isPlayerTwoTurn == 0){
             playerOneTurn();
             isPlayerOneTurn = 0;
@@ -60,23 +67,99 @@ void game(){
 }
 
 void playerOneTurn(){
+    printBoard();
     printf("Which field would you like to take Player One?: ");
     scanf("%d", &userInput);
 
     switch(userInput){
         case 0:
-            grid[0][0] = 'X';
+            endGame = 0;
+        break;
+
+        case 1:
+            grid[0][0] = playerOneSymbol;
         break;
         
-        case 1:
-            grid[0][0] = 'X';
+        case 2:
+            grid[0][1] = playerOneSymbol;
+        break;
+
+        case 3:
+            grid[0][2] = playerOneSymbol;
+        break;
+
+        case 4:
+            grid[1][0] = playerOneSymbol;
+        break;
+
+        case 5:
+            grid[1][1] = playerOneSymbol;
+        break;
+
+        case 6:
+            grid[1][2] = playerOneSymbol;
+        break;
+
+        case 7:
+            grid[2][0] = playerOneSymbol;
+        break;
+
+        case 8:
+            grid[2][1] = playerOneSymbol;
+        break;
+
+        case 9:
+            grid[2][2] = playerOneSymbol;
         break;
     }
 }
 
 void playerTwoTurn(){
+    printBoard();
     printf("Which field would you like to take Player Two?: ");
     scanf("%d", &userInput);
+
+    switch(userInput){
+        case 0:
+            endGame = 0;
+        break;
+
+        case 1:
+            grid[0][0] = playerTwoSymbol;
+        break;
+        
+        case 2:
+            grid[0][1] = playerTwoSymbol;
+        break;
+
+        case 3:
+            grid[0][2] = playerTwoSymbol;
+        break;
+
+        case 4:
+            grid[1][0] = playerTwoSymbol;
+        break;
+
+        case 5:
+            grid[1][1] = playerTwoSymbol;
+        break;
+
+        case 6:
+            grid[1][2] = playerTwoSymbol;
+        break;
+
+        case 7:
+            grid[2][0] = playerTwoSymbol;
+        break;
+
+        case 8:
+            grid[2][1] = playerTwoSymbol;
+        break;
+
+        case 9:
+            grid[2][2] = playerTwoSymbol;
+        break;
+    }
 }
 
 void checkWinner(){
@@ -85,34 +168,52 @@ void checkWinner(){
     //PLAYER X
 
     //ROWS
-    if(winCondition[0][0] == 'X' && winCondition[0][1] == 'X' && winCondition[0][2] == 'X') {}
-    if(winCondition[1][0] == 'X' && winCondition[1][1] == 'X' && winCondition[1][2] == 'X') {}
-    if(winCondition[2][0] == 'X' && winCondition[2][1] == 'X' && winCondition[2][2] == 'X') {}
+    if(winCondition[0][0] == playerOneSymbol && winCondition[0][1] == playerOneSymbol && winCondition[0][2] == playerOneSymbol) {}
+    if(winCondition[1][0] == playerOneSymbol && winCondition[1][1] == playerOneSymbol && winCondition[1][2] == playerOneSymbol) {}
+    if(winCondition[2][0] == playerOneSymbol && winCondition[2][1] == playerOneSymbol && winCondition[2][2] == playerOneSymbol) {}
 
     //COLUMNS
-    if(winCondition[0][0] == 'X' && winCondition[1][0] == 'X' && winCondition[2][0] == 'X') {}
-    if(winCondition[0][1] == 'X' && winCondition[1][1] == 'X' && winCondition[2][1] == 'X') {}
-    if(winCondition[0][2] == 'X' && winCondition[1][2] == 'X' && winCondition[2][2] == 'X') {}
+    if(winCondition[0][0] == playerOneSymbol && winCondition[1][0] == playerOneSymbol && winCondition[2][0] == playerOneSymbol) {}
+    if(winCondition[0][1] == playerOneSymbol && winCondition[1][1] == playerOneSymbol && winCondition[2][1] == playerOneSymbol) {}
+    if(winCondition[0][2] == playerOneSymbol && winCondition[1][2] == playerOneSymbol && winCondition[2][2] == playerOneSymbol) {}
 
     //DIAGONALS
-    if(winCondition[0][0] == 'X' && winCondition[1][1] == 'X' && winCondition[2][2] == 'X') {}
-    if(winCondition[0][2] == 'X' && winCondition[1][1] == 'X' && winCondition[2][0] == 'X') {}
+    if(winCondition[0][0] == playerOneSymbol && winCondition[1][1] == playerOneSymbol && winCondition[2][2] == playerOneSymbol) {}
+    if(winCondition[0][2] == playerOneSymbol && winCondition[1][1] == playerOneSymbol && winCondition[2][0] == playerOneSymbol) {}
 
     //PLAYER Y
 
     //ROWS
-    if(winCondition[0][0] == 'O' && winCondition[0][1] == 'O' && winCondition[0][2] == 'O') {}
-    if(winCondition[1][0] == 'O' && winCondition[1][1] == 'O' && winCondition[1][2] == 'O') {}
-    if(winCondition[2][0] == 'O' && winCondition[2][1] == 'O' && winCondition[2][2] == 'O') {}
+    if(winCondition[0][0] == playerTwoSymbol && winCondition[0][1] == playerTwoSymbol && winCondition[0][2] == playerTwoSymbol) {}
+    if(winCondition[1][0] == playerTwoSymbol && winCondition[1][1] == playerTwoSymbol && winCondition[1][2] == playerTwoSymbol) {}
+    if(winCondition[2][0] == playerTwoSymbol && winCondition[2][1] == playerTwoSymbol && winCondition[2][2] == playerTwoSymbol) {}
 
     //COLUMNS
-    if(winCondition[0][0] == 'O' && winCondition[1][0] == 'O' && winCondition[2][0] == 'O') {}
-    if(winCondition[0][1] == 'O' && winCondition[1][1] == 'O' && winCondition[2][1] == 'O') {}
-    if(winCondition[0][2] == 'O' && winCondition[1][2] == 'O' && winCondition[2][2] == 'O') {}
+    if(winCondition[0][0] == playerTwoSymbol && winCondition[1][0] == playerTwoSymbol && winCondition[2][0] == playerTwoSymbol) {}
+    if(winCondition[0][1] == playerTwoSymbol && winCondition[1][1] == playerTwoSymbol && winCondition[2][1] == playerTwoSymbol) {}
+    if(winCondition[0][2] == playerTwoSymbol && winCondition[1][2] == playerTwoSymbol && winCondition[2][2] == playerTwoSymbol) {}
 
     //DIAGONALS
-    if(winCondition[0][0] == 'O' && winCondition[1][1] == 'O' && winCondition[2][2] == 'O') {}
-    if(winCondition[0][2] == 'O' && winCondition[1][1] == 'O' && winCondition[2][0] == 'O') {}
+    if(winCondition[0][0] == playerTwoSymbol && winCondition[1][1] == playerTwoSymbol && winCondition[2][2] == playerTwoSymbol) {}
+    if(winCondition[0][2] == playerTwoSymbol && winCondition[1][1] == playerTwoSymbol && winCondition[2][0] == playerTwoSymbol) {}
 
 }
 
+void checkIfValid(){
+    if(grid[0][0] == playerOneSymbol || grid[0][0] == playerTwoSymbol) {}
+    if(grid[0][1] == playerOneSymbol || grid[0][1] == playerTwoSymbol) {}
+    if(grid[0][2] == playerOneSymbol || grid[0][2] == playerTwoSymbol) {}
+
+    if(grid[1][0] == playerOneSymbol || grid[1][0] == playerTwoSymbol) {}
+    if(grid[1][1] == playerOneSymbol || grid[1][1] == playerTwoSymbol) {}
+    if(grid[1][2] == playerOneSymbol || grid[1][2] == playerTwoSymbol) {}
+
+    if(grid[2][0] == playerOneSymbol || grid[2][0] == playerTwoSymbol) {}
+    if(grid[2][1] == playerOneSymbol || grid[2][1] == playerTwoSymbol) {}
+    if(grid[2][2] == playerOneSymbol || grid[2][2] == playerTwoSymbol) {}
+
+    else
+    {
+        
+    }
+}
