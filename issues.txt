@@ -1,0 +1,1 @@
+- addSymbol checks for occupied Spots and throws a warning, but never lets the user re-enter input

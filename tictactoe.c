@@ -5,6 +5,7 @@ void checkWinner();
 void playerOneTurn();
 void playerTwoTurn();
 void game();
+void addSymbol(int row, int column, char symbol);
 
 char grid[4][4] = {
 {'1', '2', '3'}, 
@@ -50,13 +51,13 @@ void printBoard(void){
 void game(){
 
     while(endGame == 1){
-        if(isPlayerOneTurn == 1 && isPlayerTwoTurn == 0){
+        if(isPlayerOneTurn == 1 && isPlayerTwoTurn == 0 && isInputValid == 0){
             playerOneTurn();
             isPlayerOneTurn = 0;
             isPlayerTwoTurn = 1;
         }
 
-        if (isPlayerOneTurn == 0 && isPlayerTwoTurn == 1){
+        if (isPlayerOneTurn == 0 && isPlayerTwoTurn == 1 && isInputValid == 0){
             playerTwoTurn();
             isPlayerTwoTurn = 0;
             isPlayerOneTurn = 1;
@@ -77,39 +78,39 @@ void playerOneTurn(){
         break;
 
         case 1:
-            grid[0][0] = playerOneSymbol;
+            addSymbol(0, 0, playerOneSymbol);
         break;
         
         case 2:
-            grid[0][1] = playerOneSymbol;
+            addSymbol(0, 1, playerOneSymbol);
         break;
 
         case 3:
-            grid[0][2] = playerOneSymbol;
+            addSymbol(0, 2, playerOneSymbol);
         break;
 
         case 4:
-            grid[1][0] = playerOneSymbol;
+            addSymbol(1, 0, playerOneSymbol);
         break;
 
         case 5:
-            grid[1][1] = playerOneSymbol;
+            addSymbol(1, 1, playerOneSymbol);
         break;
 
         case 6:
-            grid[1][2] = playerOneSymbol;
+            addSymbol(1, 2, playerOneSymbol);
         break;
 
         case 7:
-            grid[2][0] = playerOneSymbol;
+            addSymbol(2, 0, playerOneSymbol);
         break;
 
         case 8:
-            grid[2][1] = playerOneSymbol;
+            addSymbol(2, 1, playerOneSymbol);
         break;
 
         case 9:
-            grid[2][2] = playerOneSymbol;
+            addSymbol(2, 2, playerOneSymbol);
         break;
     }
 }
@@ -125,39 +126,39 @@ void playerTwoTurn(){
         break;
 
         case 1:
-            grid[0][0] = playerTwoSymbol;
+            addSymbol(0, 0, playerTwoSymbol);
         break;
         
         case 2:
-            grid[0][1] = playerTwoSymbol;
+            addSymbol(0, 1, playerTwoSymbol);
         break;
 
         case 3:
-            grid[0][2] = playerTwoSymbol;
+            addSymbol(0, 2, playerTwoSymbol);
         break;
 
         case 4:
-            grid[1][0] = playerTwoSymbol;
+            addSymbol(1, 0, playerTwoSymbol);
         break;
 
         case 5:
-            grid[1][1] = playerTwoSymbol;
+            addSymbol(1, 1, playerTwoSymbol);
         break;
 
         case 6:
-            grid[1][2] = playerTwoSymbol;
+            addSymbol(1, 2, playerTwoSymbol);
         break;
 
         case 7:
-            grid[2][0] = playerTwoSymbol;
+            addSymbol(2, 0, playerTwoSymbol);
         break;
 
         case 8:
-            grid[2][1] = playerTwoSymbol;
+            addSymbol(2, 1, playerTwoSymbol);
         break;
 
         case 9:
-            grid[2][2] = playerTwoSymbol;
+            addSymbol(2, 2, playerTwoSymbol);
         break;
     }
 }
@@ -199,21 +200,22 @@ void checkWinner(){
 
 }
 
-void checkIfValid(){
-    if(grid[0][0] == playerOneSymbol || grid[0][0] == playerTwoSymbol) {}
-    if(grid[0][1] == playerOneSymbol || grid[0][1] == playerTwoSymbol) {}
-    if(grid[0][2] == playerOneSymbol || grid[0][2] == playerTwoSymbol) {}
+void addSymbol(int row, int column, char symbol){
+    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n"); }
+    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
+    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
 
-    if(grid[1][0] == playerOneSymbol || grid[1][0] == playerTwoSymbol) {}
-    if(grid[1][1] == playerOneSymbol || grid[1][1] == playerTwoSymbol) {}
-    if(grid[1][2] == playerOneSymbol || grid[1][2] == playerTwoSymbol) {}
+    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
+    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
+    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
 
-    if(grid[2][0] == playerOneSymbol || grid[2][0] == playerTwoSymbol) {}
-    if(grid[2][1] == playerOneSymbol || grid[2][1] == playerTwoSymbol) {}
-    if(grid[2][2] == playerOneSymbol || grid[2][2] == playerTwoSymbol) {}
+    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
+    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
+    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
 
     else
     {
-        
+        isInputValid = 0;
+        grid[row][column] = symbol;
     }
 }
