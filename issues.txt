@@ -1,1 +1,3 @@
 - addSymbol checks for occupied Spots and throws a warning, but never lets the user re-enter input
+
+POSSIBLE SOLUTION: in game() function add a do while loop while isValid = 1. If isValid, it will put the symbol in its spot and continue, if not, it will keep asking the user. 
