@@ -51,14 +51,25 @@ void printBoard(void){
 void game(){
 
     while(endGame == 1){
-        if(isPlayerOneTurn == 1 && isPlayerTwoTurn == 0 && isInputValid == 0){
-            playerOneTurn();
+        
+        if(isPlayerOneTurn == 1 && isPlayerTwoTurn == 0){
+            do
+            {
+                playerOneTurn();
+
+            } while (isInputValid = 0);
+
             isPlayerOneTurn = 0;
             isPlayerTwoTurn = 1;
         }
 
-        if (isPlayerOneTurn == 0 && isPlayerTwoTurn == 1 && isInputValid == 0){
-            playerTwoTurn();
+        if (isPlayerOneTurn == 0 && isPlayerTwoTurn == 1){
+            do
+            {
+                playerTwoTurn();
+            } while (isInputValid = 1);
+            
+            
             isPlayerTwoTurn = 0;
             isPlayerOneTurn = 1;
         }
