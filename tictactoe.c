@@ -56,8 +56,8 @@ void game(){
             do
             {
                 playerOneTurn();
-
-            } while (isInputValid = 0);
+                if(isInputValid == 0) break;
+            } while (isInputValid = 1);
 
             isPlayerOneTurn = 0;
             isPlayerTwoTurn = 1;
@@ -67,6 +67,8 @@ void game(){
             do
             {
                 playerTwoTurn();
+                if (isInputValid == 0) break;
+                
             } while (isInputValid = 1);
             
             
@@ -80,7 +82,7 @@ void game(){
 
 void playerOneTurn(){
     printBoard();
-    printf("Which field would you like to take Player One?: ");
+    printf("Which field would you like to take Player One?: \n");
     scanf("%d", &userInput);
 
     switch(userInput){
@@ -128,7 +130,7 @@ void playerOneTurn(){
 
 void playerTwoTurn(){
     printBoard();
-    printf("Which field would you like to take Player Two?: ");
+    printf("Which field would you like to take Player Two?: \n");
     scanf("%d", &userInput);
 
     switch(userInput){
@@ -213,16 +215,16 @@ void checkWinner(){
 
 void addSymbol(int row, int column, char symbol){
     if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n"); }
-    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
-    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
+    else if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
+    else if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
+    
+    else if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
+    else if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
+    else if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
 
-    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
-    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
-    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
-
-    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
-    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
-    if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
+    else if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
+    else if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
+    else if(grid[row][column] == playerOneSymbol || grid[row][column] == playerTwoSymbol) { isInputValid = 1; printf("WARNING: Spot occupied\n");}
 
     else
     {
