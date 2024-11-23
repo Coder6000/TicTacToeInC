@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 void printBoard();
 void checkWinner();
 void playerOneTurn();
@@ -52,28 +51,30 @@ void printBoard(void){
 void game(){
 
     while(endGame == 0){
-        
         if(isPlayerOneTurn == 1 && isPlayerTwoTurn == 0){
+            if(endGame == 1) break;
             do
             {
-                if(endGame == 1) break;
+                
                 playerOneTurn();
                 if(isInputValid == 0) break;
-            } while (isInputValid = 1);
+            } while (isInputValid == 1);
 
+            checkWinner();
             isPlayerOneTurn = 0;
             isPlayerTwoTurn = 1;
         }
 
         if (isPlayerOneTurn == 0 && isPlayerTwoTurn == 1){
+            if(endGame == 1) break;
             do
             {
-                if(endGame == 1) break;
+                
                 playerTwoTurn();
                 if (isInputValid == 0) break;
-            } while (isInputValid = 1);
+            } while (isInputValid == 1);
             
-            
+            checkWinner();
             isPlayerTwoTurn = 0;
             isPlayerOneTurn = 1;
         }
@@ -83,9 +84,11 @@ void game(){
 }
 
 void playerOneTurn(){
+    printf("------------------------------------------------------\n");
     printBoard();
-    printf("Which field would you like to take Player One?: \n");
+    printf("Which field would you like to take Player One?: ");
     scanf("%d", &userInput);
+    printf("\n");
 
     switch(userInput){
         case 0:
@@ -131,9 +134,11 @@ void playerOneTurn(){
 }
 
 void playerTwoTurn(){
+    printf("------------------------------------------------------\n");
     printBoard();
-    printf("Which field would you like to take Player Two?: \n");
+    printf("Which field would you like to take Player Two?: ");
     scanf("%d", &userInput);
+    printf("\n");
 
     switch(userInput){
         case 0:
@@ -179,39 +184,38 @@ void playerTwoTurn(){
 }
 
 void checkWinner(){
-    char winCondition[3][3];
 
     //PLAYER X
 
     //ROWS
-    if(winCondition[0][0] == playerOneSymbol && winCondition[0][1] == playerOneSymbol && winCondition[0][2] == playerOneSymbol) {}
-    if(winCondition[1][0] == playerOneSymbol && winCondition[1][1] == playerOneSymbol && winCondition[1][2] == playerOneSymbol) {}
-    if(winCondition[2][0] == playerOneSymbol && winCondition[2][1] == playerOneSymbol && winCondition[2][2] == playerOneSymbol) {}
+    if(grid[0][0] == playerOneSymbol && grid[0][1] == playerOneSymbol && grid[0][2] == playerOneSymbol) { printf("PLAYER ONE WON!\n"); endGame = 1; }
+    else if(grid[1][0] == playerOneSymbol && grid[1][1] == playerOneSymbol && grid[1][2] == playerOneSymbol) { printf("PLAYER ONE WON!\n"); endGame = 1; }
+    else if(grid[2][0] == playerOneSymbol && grid[2][1] == playerOneSymbol && grid[2][2] == playerOneSymbol) { printf("PLAYER ONE WON!\n"); endGame = 1; }
 
     //COLUMNS
-    if(winCondition[0][0] == playerOneSymbol && winCondition[1][0] == playerOneSymbol && winCondition[2][0] == playerOneSymbol) {}
-    if(winCondition[0][1] == playerOneSymbol && winCondition[1][1] == playerOneSymbol && winCondition[2][1] == playerOneSymbol) {}
-    if(winCondition[0][2] == playerOneSymbol && winCondition[1][2] == playerOneSymbol && winCondition[2][2] == playerOneSymbol) {}
+    else if(grid[0][0] == playerOneSymbol && grid[1][0] == playerOneSymbol && grid[2][0] == playerOneSymbol) { printf("PLAYER ONE WON!\n"); endGame = 1; }
+    else if(grid[0][1] == playerOneSymbol && grid[1][1] == playerOneSymbol && grid[2][1] == playerOneSymbol) { printf("PLAYER ONE WON!\n"); endGame = 1; }
+    else if(grid[0][2] == playerOneSymbol && grid[1][2] == playerOneSymbol && grid[2][2] == playerOneSymbol) { printf("PLAYER ONE WON!\n"); endGame = 1; }
 
     //DIAGONALS
-    if(winCondition[0][0] == playerOneSymbol && winCondition[1][1] == playerOneSymbol && winCondition[2][2] == playerOneSymbol) {}
-    if(winCondition[0][2] == playerOneSymbol && winCondition[1][1] == playerOneSymbol && winCondition[2][0] == playerOneSymbol) {}
+    else if(grid[0][0] == playerOneSymbol && grid[1][1] == playerOneSymbol && grid[2][2] == playerOneSymbol) { printf("PLAYER ONE WON!\n"); endGame = 1; }
+    else if(grid[0][2] == playerOneSymbol && grid[1][1] == playerOneSymbol && grid[2][0] == playerOneSymbol) { printf("PLAYER ONE WON!\n"); endGame = 1; }
 
     //PLAYER Y
 
     //ROWS
-    if(winCondition[0][0] == playerTwoSymbol && winCondition[0][1] == playerTwoSymbol && winCondition[0][2] == playerTwoSymbol) {}
-    if(winCondition[1][0] == playerTwoSymbol && winCondition[1][1] == playerTwoSymbol && winCondition[1][2] == playerTwoSymbol) {}
-    if(winCondition[2][0] == playerTwoSymbol && winCondition[2][1] == playerTwoSymbol && winCondition[2][2] == playerTwoSymbol) {}
+    else if(grid[0][0] == playerTwoSymbol && grid[0][1] == playerTwoSymbol && grid[0][2] == playerTwoSymbol) { printf("PLAYER TWO WON!\n"); endGame = 1; }
+    else if(grid[1][0] == playerTwoSymbol && grid[1][1] == playerTwoSymbol && grid[1][2] == playerTwoSymbol) { printf("PLAYER TWO WON!\n"); endGame = 1; }
+    else if(grid[2][0] == playerTwoSymbol && grid[2][1] == playerTwoSymbol && grid[2][2] == playerTwoSymbol) { printf("PLAYER TWO WON!\n"); endGame = 1; }
 
     //COLUMNS
-    if(winCondition[0][0] == playerTwoSymbol && winCondition[1][0] == playerTwoSymbol && winCondition[2][0] == playerTwoSymbol) {}
-    if(winCondition[0][1] == playerTwoSymbol && winCondition[1][1] == playerTwoSymbol && winCondition[2][1] == playerTwoSymbol) {}
-    if(winCondition[0][2] == playerTwoSymbol && winCondition[1][2] == playerTwoSymbol && winCondition[2][2] == playerTwoSymbol) {}
+    else if(grid[0][0] == playerTwoSymbol && grid[1][0] == playerTwoSymbol && grid[2][0] == playerTwoSymbol) { printf("PLAYER TWO WON!\n"); endGame = 1; }
+    else if(grid[0][1] == playerTwoSymbol && grid[1][1] == playerTwoSymbol && grid[2][1] == playerTwoSymbol) { printf("PLAYER TWO WON!\n"); endGame = 1; }
+    else if(grid[0][2] == playerTwoSymbol && grid[1][2] == playerTwoSymbol && grid[2][2] == playerTwoSymbol) { printf("PLAYER TWO WON!\n"); endGame = 1; }
 
     //DIAGONALS
-    if(winCondition[0][0] == playerTwoSymbol && winCondition[1][1] == playerTwoSymbol && winCondition[2][2] == playerTwoSymbol) {}
-    if(winCondition[0][2] == playerTwoSymbol && winCondition[1][1] == playerTwoSymbol && winCondition[2][0] == playerTwoSymbol) {}
+    else if(grid[0][0] == playerTwoSymbol && grid[1][1] == playerTwoSymbol && grid[2][2] == playerTwoSymbol) { printf("PLAYER TWO WON!\n"); endGame = 1; }
+    else if(grid[0][2] == playerTwoSymbol && grid[1][1] == playerTwoSymbol && grid[2][0] == playerTwoSymbol) { printf("PLAYER TWO WON!\n"); endGame = 1; }
 
 }
 
